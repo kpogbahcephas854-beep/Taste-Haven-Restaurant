@@ -1,0 +1,50 @@
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f8f9fa;
+}
+
+.hero{
+    background:#fff8f0;
+    padding:80px 0;
+}
+
+.hero h1{
+    font-size:55px;
+    font-weight:bold;
+}
+
+.hero p{
+    font-size:20px;
+    margin:25px 0;
+}
+
+.hero-image{
+    max-height:450px;
+}
+
+.category-card{
+    transition:.3s;
+    border:none;
+}
+
+.category-card:hover{
+    transform:translateY(-8px);
+}
+
+.food-card{
+    border:none;
+    transition:.3s;
+}
+
+.food-card:hover{
+    transform:scale(1.03);
+}
+
+.card img{
+    height:230px;
+    object-fit:cover;
+}
+
+footer{
+    margin-top:80px;
+}
