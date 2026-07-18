@@ -1,0 +1,60 @@
+services:
+
+  app:
+    build: .
+    container_name: tastehaven_app
+
+    ports:
+      - "8082:80"
+
+    volumes:
+      - .:/var/www/html
+
+    environment:
+      DB_HOST: db
+      DB_USER: tastehaven
+      DB_PASSWORD: password
+      DB_NAME: restaurant_ordering
+
+    depends_on:
+      - db
+
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    container_name: tastehaven_db
+
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: restaurant_ordering
+      MYSQL_USER: tastehaven
+      MYSQL_PASSWORD: password
+
+    ports:
+      - "3308:3306"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: tastehaven_phpmyadmin
+
+    restart: unless-stopped
+
+    depends_on:
+      - db
+
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+
+    ports:
+      - "8083:80"
+
+volumes:
+  mysql_data:
